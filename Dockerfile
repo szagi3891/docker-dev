@@ -13,8 +13,9 @@ COPY . .
 
 
 
+
 # ===== Development stage =====
-FROM base AS development
+FROM deps AS development
 WORKDIR /app
 ENV NODE_ENV=development
 CMD ["npm", "run", "dev"]
@@ -26,6 +27,8 @@ FROM deps AS production-build
 WORKDIR /app
 # Zbuduj aplikację
 RUN npm run build
+
+
 
 
 # ===== Production stage =====

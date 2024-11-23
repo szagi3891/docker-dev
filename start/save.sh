@@ -1,0 +1,1 @@
+docker save "myapp:dev" | gzip > image.tar.gz

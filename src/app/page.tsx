@@ -11,7 +11,7 @@ export default function Home() {
               src/app/page.tsx <span className="text-green-500">dddd</span>
             </code>
             ...
-            <div className="text-red-500">ddd 666</div>
+            <div className="text-red-500">ddd 777</div>
           </li>
           <li>Save and see your changes instantly - 333</li>
         </ol>

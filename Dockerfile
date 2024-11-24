@@ -3,7 +3,6 @@ FROM node:22-alpine AS base
 WORKDIR /app
 
 
-
 FROM base AS deps 
 WORKDIR /app
 # Skopiuj package.json i package-lock.json (jeśli istnieje)
@@ -21,12 +20,10 @@ ENV NODE_ENV=development
 CMD ["npx", "next", "dev", "--turbopack"]
 
 
-
 FROM deps AS production-build
 WORKDIR /app
 # Zbuduj aplikację
 RUN npm run build
-
 
 
 # ===== Production stage =====

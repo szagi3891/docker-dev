@@ -1,5 +1,7 @@
 services:
-  app:
+  app-dev:
+    container_name: my_app_dev_mode
+    image: testbuildimage-dev-mode
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,6 +9,35 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+  # app-build:
+  #   extends:
+  #     service: app-dev
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+
+  app-build:
+    container_name: my_app_build
+    image: testbuildimage-build
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+
+  # # wtedy to jest obraz, z trybu dev mode tylko że bez podpitego wolumentu
+  app-build-run:
+    container_name: my_app_build_run
+    image: testbuildimage-build
     ports:
       - "3000:3000"
     environment:

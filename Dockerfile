@@ -18,7 +18,7 @@ CMD ["sh", "-c", "while true; do sleep 30; done"]
 FROM deps AS development
 WORKDIR /app
 ENV NODE_ENV=development
-CMD ["npm", "run", "dev"]
+CMD ["npx", "next", "dev", "--turbopack"]
 
 
 

@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "docker compose up app-dev",
+    "dev-no-cache": "docker compose up app-dev --build",
+
+    "image-build": "docker compose build app-build",
+    "image-run": "docker compose up app-build-run",
+
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

@@ -8,10 +8,10 @@ export default function Home() {
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx <span className="text-green-500">dddd</span>
+              src/app/page.tsx <span className="text-green-500">www</span>
             </code>
             ...
-            <div className="text-red-500">ddd 777</div>
+            <div className="text-red-500">ddd 888</div>
           </li>
           <li>Save and see your changes instantly - 333</li>
         </ol>

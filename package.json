@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "docker compose up app-dev",
+    "dev": "docker compose up mongodb app-dev",
     "dev-no-cache": "docker compose up app-dev --build",
     "connect": "docker exec -it my_app_dev_mode sh",
     "image-build": "docker compose build app-build",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "mobx": "^6.13.5",
+    "mongodb": "^6.11.0",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"

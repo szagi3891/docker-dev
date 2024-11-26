@@ -1,9 +1,65 @@
 services:
+
+  # mongodb:
+  #   image: mongo:latest
+  #   container_name: mongodb
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=secret
+  #     - MONGO_INITDB_DATABASE=testdb
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - ./keyfile:/keyfile  # Montowanie pliku klucza
+  #   # command: ["--replSet", "rs0"]
+  #   command:
+  #     - --replSet
+  #     - "rs0"
+  #     - --keyFile
+  #     - /keyfile  # Ustawienie pliku klucza
+  #     - --auth  # Włączenie autentykacji
+
+
+  mongodb:
+    image: mongo:8-noble
+    command:
+      - "--replSet"
+      - "rs0"
+      - "--bind_ip_all"
+      - "--port"
+      - "27017"
+      # - --keyFile
+      # - /keyfile
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=admin
+    #   - MONGO_INITDB_ROOT_PASSWORD=secret
+    #   - MONGO_INITDB_DATABASE=testdb
+    ports:
+      - 27017:27017
+    healthcheck:
+      # test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'127.0.0.1:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      retries: 30
+    volumes:
+      - ./keyfile:/keyfile  # Montowanie pliku klucza
+
+#     volumes:
+#       - "mongo1_data:/data/db"
+#       - "mongo1_config:/data/configdb"
+
+
+# volumes:
+#   mongo1_data:
+#   mongo1_config:
+
+
   app-dev:
     container_name: my_app_dev_mode
     image: testbuildimage-dev-mode
     build:
-      context: .
       dockerfile: Dockerfile
       target: development
     volumes:
@@ -25,7 +81,6 @@ services:
     container_name: my_app_build
     image: testbuildimage-build
     build:
-      context: .
       dockerfile: Dockerfile
       target: production
     ports:

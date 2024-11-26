@@ -1,6 +1,9 @@
+'use server'
+
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <div className="grid grid-rows-[1fr_20px] justify-items-center p-4 gap-2 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 items-center sm:items-start">
